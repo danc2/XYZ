@@ -12,8 +12,7 @@ public class EnemyMove : MonoBehaviour
     public float m_CloseDistance = 50f;
 
     void Start()
-    {
-
+    {;
         agent = GetComponent<NavMeshAgent>();
         agent.SetDestination(target.transform.position);
     }
