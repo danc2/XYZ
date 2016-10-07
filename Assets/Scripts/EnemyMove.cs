@@ -3,7 +3,8 @@ using System.Collections;
 
 public class EnemyMove : MonoBehaviour
 {
-    public Transform target;
+    // have changed this to private due to moving to prefab instatiate
+    Transform target;
     NavMeshAgent agent;
 
     //this is the base object we are tracking to
@@ -12,7 +13,11 @@ public class EnemyMove : MonoBehaviour
     public float m_CloseDistance = 50f;
 
     void Start()
-    {;
+    {
+        //need to set target for navmesh as we have come from a prefab
+        target = GameObject.FindWithTag("HomeBaseTarget").transform;
+
+        // set up the navmesh to target the homebase
         agent = GetComponent<NavMeshAgent>();
         agent.SetDestination(target.transform.position);
     }
@@ -28,12 +33,12 @@ public class EnemyMove : MonoBehaviour
         {
             agent.SetDestination(target.transform.position);
             agent.Resume();
-            Debug.Log(distance);
+            //Debug.Log(distance);
         }
         else
         {
             agent.Stop();
-            Debug.Log("I should stop moving!");
+            //Debug.Log("I should stop moving!");
         }
 
 
