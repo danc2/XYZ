@@ -53,7 +53,7 @@ public class Bullet : MonoBehaviour {
 
         // destroy the target after one hit
         // need to be adding in health manager
-        Destroy(target.gameObject);
+        //Destroy(target.gameObject);
 
     }
 

@@ -54,7 +54,7 @@ public class WaveSpawner : MonoBehaviour {
         {
             SpawnEnemy();
             Debug.Log("Spawn!");
-            yield return new WaitForSeconds(3.0f);
+            yield return new WaitForSeconds(10.0f);
         }
         
     }
@@ -62,7 +62,7 @@ public class WaveSpawner : MonoBehaviour {
     void SpawnEnemy ()
     {
         // instantiate the enemy
-        // need to expand this for the different types
+        // need to expand this for the different types - or do we just create a spawn point for each enemy?
         Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
     }
 

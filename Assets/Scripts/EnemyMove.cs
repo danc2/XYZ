@@ -29,17 +29,10 @@ public class EnemyMove : MonoBehaviour
         
 
         // if distance is less than stop distance, then stop moving
-        if (distance > m_CloseDistance)
-        {
-            agent.SetDestination(target.transform.position);
-            agent.Resume();
-            //Debug.Log(distance);
-        }
-        else
-        {
+        if (distance < m_CloseDistance)
             agent.Stop();
             //Debug.Log("I should stop moving!");
-        }
+        
 
 
     }
