@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour {
 
 	[Header("FPS Mode")]
 	public bool FPSAvailable;
+	public GameObject[] Weapons;
+	public GameObject Equipped;
 
 	[Header("Camera Control")]
 	public bool FPSon;
@@ -26,8 +28,8 @@ public class GameManager : MonoBehaviour {
 	public GameObject RTS;
 
 	[Header("HUD Settings")]
-	public GUIText text;
-	float period = 4.0f;
+	public GameObject RTSHUD;
+	public GameObject FPSHUD;
 
     // Use this for initialization
     void Start()
@@ -73,13 +75,8 @@ public class GameManager : MonoBehaviour {
 			} 
 
 		}
-		if (FPSAvailable == false) {
-			period += Time.deltaTime;
-			if(Time.time > period){
-				Destroy(text);
-			}
 
-		}
+
 	}
     public void SelectTurret(int i)
     {
