@@ -28,8 +28,8 @@ public class GameManager : MonoBehaviour {
 	public GameObject RTS;
 
 	[Header("HUD Settings")]
-	public GameObject RTSHUD;
-	public GameObject FPSHUD;
+	public GameObject RTSHud;
+	public GameObject FPSHud;
 
     // Use this for initialization
     void Start()
@@ -65,12 +65,16 @@ public class GameManager : MonoBehaviour {
 				RTSon = false;
 				FPS.SetActive (true);
 				RTS.SetActive (false);
+				FPSHud.SetActive (true);
+				RTSHud.SetActive (false);
 				Cursor.visible = false;
 			} else if (FPSon == true) {
 				FPSon = false;
 				RTSon = true;
 				FPS.SetActive (false);
 				RTS.SetActive (true);
+				FPSHud.SetActive (false);
+				RTSHud.SetActive (true);
 				Cursor.visible = true;
 			} 
 
