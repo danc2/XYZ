@@ -37,9 +37,12 @@ public class Bullet : MonoBehaviour {
         if (dir.magnitude <= distanceThisFrame)
         {
             HitTarget();
+            return;
         }
 
         transform.Translate(dir.normalized * distanceThisFrame, Space.World);
+        // this makes the bullet orientate towards the target
+        transform.LookAt(target);
     }
 
     void HitTarget()
@@ -47,6 +50,10 @@ public class Bullet : MonoBehaviour {
         // we hit the target so destroy the bullet
         Destroy(gameObject);
         // need to add in particle system
+
+        // destroy the target after one hit
+        // need to be adding in health manager
+        Destroy(target.gameObject);
 
     }
 
