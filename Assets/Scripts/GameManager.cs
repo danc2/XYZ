@@ -80,7 +80,28 @@ public class GameManager : MonoBehaviour {
 
 		}
 
+		if (FPSControl.HandGun == true) {
+			
 
+			Weapons[1].SetActive (false);
+			Weapons[2].SetActive (false);
+			Weapons[0].SetActive (true);
+			Equipped = Weapons [0];
+		} else if (FPSControl.Assault == true) {
+			
+
+			Weapons[0].SetActive (false);
+			Weapons[2].SetActive (false);
+			Weapons[1].SetActive (true);
+			Equipped = Weapons [1];
+
+		}  else if (FPSControl.ShotGun == true) {
+			Equipped = Weapons [2];
+			Weapons[2].SetActive (true);
+			Weapons[0].SetActive (false);
+			Weapons[1].SetActive (false);
+
+		}
 	}
     public void SelectTurret(int i)
     {

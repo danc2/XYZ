@@ -33,8 +33,6 @@ public class EnemyMove : MonoBehaviour
             agent.Stop();
             //Debug.Log("I should stop moving!");
         
-
-
     }
 
 }
