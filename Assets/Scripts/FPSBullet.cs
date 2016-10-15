@@ -9,7 +9,7 @@ public class FPSBullet : MonoBehaviour {
 			Destroy (gameObject);
 		}
 		if (col.gameObject.tag == "Enemy") {
-			Destroy (col.gameObject);
+			
 			Destroy (gameObject);
 		}
 	}

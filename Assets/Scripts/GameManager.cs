@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
@@ -38,7 +39,6 @@ public class GameManager : MonoBehaviour {
 		FPSon = false;
 
         currentSelection = null;
-
     }
 
     // Update is called once per frame

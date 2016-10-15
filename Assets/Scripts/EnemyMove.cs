@@ -6,7 +6,7 @@ public class EnemyMove : MonoBehaviour
     // have changed this to private due to moving to prefab instatiate
     Transform target;
     NavMeshAgent agent;
-
+	public Animator anim;
     //this is the base object we are tracking to
     private GameObject playerBase;
     // set variable to check distance
@@ -16,7 +16,7 @@ public class EnemyMove : MonoBehaviour
     {
         //need to set target for navmesh as we have come from a prefab
         target = GameObject.FindWithTag("HomeBaseTarget").transform;
-
+		anim = GetComponent<Animator> ();
         // set up the navmesh to target the homebase
         agent = GetComponent<NavMeshAgent>();
         agent.SetDestination(target.transform.position);
@@ -32,7 +32,7 @@ public class EnemyMove : MonoBehaviour
         if (distance < m_CloseDistance)
             agent.Stop();
             //Debug.Log("I should stop moving!");
-        
+
     }
 
 }
