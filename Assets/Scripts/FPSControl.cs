@@ -12,6 +12,8 @@ public class FPSControl : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		animator.GetComponent<Animator> ();
+		animator.SetFloat ("Body_Horizontal_f", 0);
+
 	}
 	
 	// Update is called once per frame
@@ -28,10 +30,12 @@ public class FPSControl : MonoBehaviour {
 		}
 		if (Input.GetKey (KeyCode.Alpha1)) {
 			animator.SetInteger ("WeaponType_int", 1);
+			animator.SetFloat ("Body_Horizontal_f", 0);
 			HandGun = true;
 			Assault = false;
 			ShotGun = false;
 		} else if (Input.GetKey (KeyCode.Alpha2)) {
+			animator.SetFloat ("Body_Horizontal_f", 0.59f);
 			animator.SetInteger ("WeaponType_int", 3);
 			Assault = true;
 			HandGun = false;

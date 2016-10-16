@@ -30,13 +30,13 @@ public class EnemyHealth : MonoBehaviour {
 		Slider.value =  curHealth;
 	  	
 		if (curHealth == 0) {
-			death = true;
+			Destroy (gameObject);
 		}
 
 		   }
 
-	void OnTriggerEnter(Collider col){
-		if (col.tag == "Bullet") {
+	void OnCollisionEnter(Collision col){
+		if (col.gameObject.tag == "Bullet") {
 			curHealth = curHealth - 10;
 
 		}
