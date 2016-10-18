@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class GameManager : MonoBehaviour {
 
@@ -56,8 +57,10 @@ public class GameManager : MonoBehaviour {
 				Debug.Log ("raycast hit!");
 				if (hit.transform.tag == "Ground") {
 					Debug.Log ("raycast hit Ground!");
-					if (Input.GetMouseButtonUp (0)) {
-						Instantiate (currentSelection, hit.point, Quaternion.identity);
+					if (Input.GetMouseButtonUp (0) &&!EventSystem.current.IsPointerOverGameObject())
+                    {
+
+                        Instantiate (currentSelection, hit.point, Quaternion.identity);
 						currentSelection = null;
 					}
 				}
