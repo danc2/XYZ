@@ -10,13 +10,13 @@ public class EnemyHealth : MonoBehaviour
     public float curHealth = 100;
     public static bool death;
     // daniel can you put this back in - I couldnt find the asset for the tank
-    //public Slider Slider;
+    public Slider Slider;
     // Use this for initialization
 
 
     void Start()
     {
-        //Slider.value = maxHealth;
+        Slider.value = maxHealth;
 
     }
 
@@ -31,7 +31,7 @@ public class EnemyHealth : MonoBehaviour
     void Update()
     {
 
-        //Slider.value =  curHealth;
+        Slider.value =  curHealth;
 
         if (curHealth < 0)
         {
