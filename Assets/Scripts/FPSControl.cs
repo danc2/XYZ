@@ -1,5 +1,6 @@
-﻿using UnityEngine;
+﻿using UnityEngine.Audio;
 using System.Collections;
+using UnityEngine;
 
 public class FPSControl : MonoBehaviour {
 	//static bool for weapons equip
@@ -14,6 +15,7 @@ public class FPSControl : MonoBehaviour {
 		animator.GetComponent<Animator> ();
 		animator.SetFloat ("Body_Horizontal_f", 0);
 
+
 	}
 	
 	// Update is called once per frame
@@ -23,6 +25,7 @@ public class FPSControl : MonoBehaviour {
 		animator.SetFloat ("Speed_f", v);
 
 		if (v == 1) {
+			animator.SetFloat ("Speed_f", 1);
 			transform.Translate (Vector3.forward * WalkSpeed * Time.deltaTime);
 		} else if (v == -1) {
 			transform.Translate (Vector3.back * WalkSpeed * Time.deltaTime);
@@ -50,7 +53,7 @@ public class FPSControl : MonoBehaviour {
 	
 		if (Input.GetButtonDown ("Fire1")) {
 			animator.SetBool ("Shoot_b", true);
-	
+
 		}
 		else animator.SetBool ("Shoot_b", false);
 	}

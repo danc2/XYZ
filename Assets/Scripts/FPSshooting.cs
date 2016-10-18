@@ -1,39 +1,69 @@
-﻿
+﻿using UnityEngine.Audio;
 using UnityEngine;
 using System.Collections;
 
 public class FPSshooting : MonoBehaviour {
-	// Prefab of the Shell 
+	
 	public Rigidbody m_Shell; 
-	// A child of the tank where the shells are spawned 
 	public Transform m_FireTransform; 
-	// The force given to the shell when firing 
 	public float m_LaunchForce = 30f;
+	public AudioClip[] sounds;
+	public AudioSource audio;
+	public static int clips = 2; // how many clips you have
+	public int bulletsPerClip = 20; // how many bullets per clip
+	public float reloadTime = 0.5f; // reload time in seconds
+	public static float bullets; 
 
 	// Use this for initialization
 	void Start () {
-
+		audio = GetComponent<AudioSource> ();
+		bullets = bulletsPerClip;
 	}
 
 	// Update is called once per frame 
 	private void Update() { 
-		// TODO: Later on, we'll check with the 'Game Manager' to make 
-		// sure the game isn't over
-		if (Input.GetButtonUp("Fire1")) {
-			Fire();
+		if (bullets > 0) { 
+			if (Input.GetButtonUp ("Fire1")) {
+				Fire ();
+				bullets--;
+			}
+		} else if (clips > 0) { // and still have ammo clips...
+			Reload (); // start reload routine
+		} else if (clips == 0) {
+			audio.clip = sounds[2];
+			audio.Play ();
 		}
+		else if (bullets == 0) {
+
+	}
+
 	}
 
 	private void Fire() { 
-		// Create an instance of the shell and store a reference to its rigidbody 
 		Rigidbody shellInstance = Instantiate(m_Shell, m_FireTransform.position, m_FireTransform.rotation) as Rigidbody;
-		// Set the shell's velocity to the launch force in the fire 
-		// position's forward direction 
 		shellInstance.velocity = m_LaunchForce * m_FireTransform.right; 
+		audio.clip = sounds[0];
+		audio.Play ();
+	}
+
+	private static bool reloading = false; // is true while reloading, false otherwise
+
+	public void Reload(){
+		// abort other Reload calls if already reloading:
+
+
+		clips -= 1; // got one clip, decrement clip count:
+		audio.clip = sounds[1];
+		audio.Play ();
+
+		bullets = bulletsPerClip; // now the bullets are available
+
 
 	}
 
 }
+
+
 
 
 

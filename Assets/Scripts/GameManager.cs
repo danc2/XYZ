@@ -31,19 +31,23 @@ public class GameManager : MonoBehaviour {
 	[Header("HUD Settings")]
 	public GameObject RTSHud;
 	public GameObject FPSHud;
+	public Text Ammo_UIText;
+
+
 
     // Use this for initialization
     void Start()
     {
 		RTSon = true;
 		FPSon = false;
-
+		Ammo_UIText.text = "";
         currentSelection = null;
     }
 
     // Update is called once per frame
     void Update()
 	{
+		Ammo_UIText.text = FPSshooting.bullets.ToString () +"/" + FPSshooting.clips	;
 		if (currentSelection != null) {
 			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 			RaycastHit hit = new RaycastHit ();
@@ -102,6 +106,7 @@ public class GameManager : MonoBehaviour {
 			Weapons[1].SetActive (false);
 
 		}
+
 	}
     public void SelectTurret(int i)
     {
