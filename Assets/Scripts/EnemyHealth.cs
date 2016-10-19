@@ -35,6 +35,7 @@ public class EnemyHealth : MonoBehaviour
         if (curHealth <= 0)
         {
             Destroy(gameObject);
+			GameManager.coins= GameManager.coins +10;
 
         }
 
