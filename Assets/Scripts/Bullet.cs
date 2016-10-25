@@ -26,7 +26,7 @@ public class Bullet : MonoBehaviour {
         // if for some reason we loose the target, then destroy the bullet
         if (target == null)
         {
-            Destroy(gameObject);
+            Destroy(gameObject, 3);
             return;
         }
 

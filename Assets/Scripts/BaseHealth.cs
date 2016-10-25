@@ -35,7 +35,6 @@ public class BaseHealth : MonoBehaviour
         if (curHealth <= 0)
         {
             Destroy(gameObject);
-            GameManager.coins = GameManager.coins + 10;
 
             //ADD in code here to take you to loose screen etc
             Debug.Log("YOU LOOSE!!");

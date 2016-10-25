@@ -12,7 +12,7 @@ public class FPSshooting : MonoBehaviour {
 	public static int clips = 2; // how many clips you have
 	public int bulletsPerClip = 20; // how many bullets per clip
 	public float reloadTime = 0.5f; // reload time in seconds
-	public static float bullets; 
+	public static float bullets;
 
 	// Use this for initialization
 	void Start () {

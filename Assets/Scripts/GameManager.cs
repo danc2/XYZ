@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour {
 	public Text CurrencyText;
 	public Text MGlimit;
 	public Text MLlimit;
-	public static int coins ;
+	public static int coins = 500;
 	public int currency;
 	private int CostOfTurret = 50;
 	private int CostOfMl = 100;
@@ -115,7 +115,7 @@ public class GameManager : MonoBehaviour {
 				FPSHud.SetActive (true);
 				RTSHud.SetActive (false);
 				Cursor.visible = false;
-			} else if (FPSon == true) {
+			} else if (FPSon == true ) {
 				FPSon = false;
 				RTSon = true;
 				FPS.SetActive (false);
@@ -142,9 +142,17 @@ public class GameManager : MonoBehaviour {
 			Weapons[2].SetActive (true);
 			Weapons[0].SetActive (false);
 			Weapons[1].SetActive (false);
-
 		}
-
+		if (FPShealth.death == true) {
+			FPSAvailable = false;
+			FPSon = false;
+			RTSon = true;
+			FPS.SetActive (false);
+			RTS.SetActive (true);
+			FPSHud.SetActive (false);
+			RTSHud.SetActive (true);
+			Cursor.visible = true;
+		}
 	}
     public void SelectTurret(int i)
     {

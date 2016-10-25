@@ -60,6 +60,7 @@ public class EnemyShoot : MonoBehaviour {
         if (nearestEnemy != null && shortestDistance <= turretRange)
         {
             turretTarget = nearestEnemy.transform;
+
         }
         else
         {

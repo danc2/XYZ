@@ -22,6 +22,7 @@ public class FPSControl : MonoBehaviour {
 	void Update () {
 	
 		float v = Input.GetAxis ("Vertical");
+		float h = Input.GetAxis ("Horizontal");
 		animator.SetFloat ("Speed_f", v);
 
 		if (v == 1) {
@@ -49,7 +50,16 @@ public class FPSControl : MonoBehaviour {
 			Assault = false;
 			animator.SetInteger ("WeaponType_int", 4);
 		}
+		if (h == 1) {
+			transform.Translate (Vector3.right * WalkSpeed * Time.deltaTime);
+		} else if (h == -1) {
+			transform.Translate (Vector3.left * WalkSpeed * Time.deltaTime);
 
+		}
+		if (Input.GetKeyDown (KeyCode.Space)) {
+			transform.Translate (Vector3.up * WalkSpeed * Time.deltaTime);
+
+		}
 	
 		if (Input.GetButtonDown ("Fire1")) {
 			animator.SetBool ("Shoot_b", true);
