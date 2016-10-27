@@ -36,6 +36,7 @@ public class EnemyHealth : MonoBehaviour
         {
             Destroy(gameObject);
 			GameManager.coins= GameManager.coins +10;
+			GameManager.numofkilled++;
 
         }
 

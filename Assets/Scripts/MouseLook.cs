@@ -31,6 +31,7 @@ public class MouseLook : MonoBehaviour {
 
 	void Update ()
 	{
+		if(!GameManager.pause){
 		if (axes == RotationAxes.MouseXAndY)
 		{			
 			rotAverageY = 0f;
@@ -109,6 +110,7 @@ public class MouseLook : MonoBehaviour {
 			Quaternion yQuaternion = Quaternion.AngleAxis (rotAverageY, Vector3.left);
 			transform.localRotation = originalRotation * yQuaternion;
 		}
+	}
 	}
 
 	void Start ()

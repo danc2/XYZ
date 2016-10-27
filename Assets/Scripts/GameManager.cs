@@ -27,8 +27,8 @@ public class GameManager : MonoBehaviour {
 	public GameObject Equipped;
 
 	[Header("Camera Control")]
-	public bool FPSon;
-	public bool RTSon;
+	public static bool FPSon;
+	public static bool RTSon;
 	public GameObject FPS;
 	public GameObject RTS;
 
@@ -47,11 +47,16 @@ public class GameManager : MonoBehaviour {
 	private int CostOfAmmo = 500;
 	public Button turret;
 	public Button ml;
-
+	public static float numofkilled = 0;
+	public static string maxnumofkill;
+	public Text numkilled;
+	[Header("Menu")]
+	public static bool pause = false;
 
     // Use this for initialization
     void Start()
     {
+
 		RTSon = true;
 		FPSon = false;
 		Ammo_UIText.text = "";
@@ -62,60 +67,96 @@ public class GameManager : MonoBehaviour {
     // Update is called once per frame
     void Update()
 	{
-		currency = coins;
-		CurrencyText.text = currency.ToString ();
-		MGlimit.text = NumOfTurret +"/" + MaxNum;
-		MLlimit.text = NumOfML +"/" + MaxNum;
-		Ammo_UIText.text = FPSshooting.bullets.ToString () +"/" + FPSshooting.clips	;
-		if (currentSelection != null) {
-			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
-			RaycastHit hit = new RaycastHit ();
 
-			if (Physics.Raycast (ray, out hit, 1000f)) {
-				Debug.Log ("raycast hit!");
-				if (hit.transform.tag == "Ground") {
-					Debug.Log ("raycast hit Ground!");
-					if (Input.GetMouseButtonUp (0) &&!EventSystem.current.IsPointerOverGameObject())
-                    {
+		if (pause == true) {
+			Time.timeScale = 0;
 
-                        Instantiate (currentSelection, hit.point, Quaternion.identity);
-						if (currentSelection == turrets [0]) {
-							NumOfTurret++;
-							coins = coins - CostOfTurret;
-							currentSelection = null;
-						} else if (currentSelection == turrets [1]) {
-							NumOfML++;
-							coins = coins - CostOfMl;
-							currentSelection = null;
+		}
+		else
+			Time.timeScale = 1;
+		if (!pause) {
+			numkilled.text = maxnumofkill;
+			currency = coins;
+			CurrencyText.text = currency.ToString ();
+			MGlimit.text = NumOfTurret + "/" + MaxNum;
+			MLlimit.text = NumOfML + "/" + MaxNum;
+			Ammo_UIText.text = FPSshooting.bullets.ToString () + "/" + FPSshooting.clips;
+			if (currentSelection != null) {
+				Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+				RaycastHit hit = new RaycastHit ();
+
+				if (Physics.Raycast (ray, out hit, 1000f)) {
+					Debug.Log ("raycast hit!");
+					if (hit.transform.tag == "Ground") {
+						Debug.Log ("raycast hit Ground!");
+						if (Input.GetMouseButtonUp (0) && !EventSystem.current.IsPointerOverGameObject ()) {
+
+							Instantiate (currentSelection, hit.point, Quaternion.identity);
+							if (currentSelection == turrets [0]) {
+								NumOfTurret++;
+								coins = coins - CostOfTurret;
+								currentSelection = null;
+							} else if (currentSelection == turrets [1]) {
+								NumOfML++;
+								coins = coins - CostOfMl;
+								currentSelection = null;
+							}
 						}
-					}
 
+					}
 				}
+		
+			}
+
+			if (currency < CostOfTurret || NumOfTurret == MaxNum) {
+				turret.interactable = false;
+			} else {
+				turret.interactable = true;
+			}
+			if (currency < CostOfMl || NumOfML == MaxNum) {
+				ml.interactable = false;
+			} else {
+				ml.interactable = true;
 			}
 		
-		}
+			if (Input.GetKeyDown (KeyCode.F)) {
+				if (RTSon == true && FPSAvailable == true) {
+					FPSon = true;
+					RTSon = false;
+					FPS.SetActive (true);
+					RTS.SetActive (false);
+					FPSHud.SetActive (true);
 
-		if (currency < CostOfTurret || NumOfTurret == MaxNum) {
-			turret.interactable = false;
-		} else {
-			turret.interactable = true;
-		}
-		if (currency < CostOfMl || NumOfML == MaxNum) {
-			ml.interactable = false;
-		} else {
-			ml.interactable = true;
-		}
-		
-		if (Input.GetKeyDown (KeyCode.F)) {
-			if (RTSon == true && FPSAvailable == true) {
-				FPSon = true;
-				RTSon = false;
-				FPS.SetActive (true);
-				RTS.SetActive (false);
-				FPSHud.SetActive (true);
-				RTSHud.SetActive (false);
-				Cursor.visible = false;
-			} else if (FPSon == true ) {
+					Cursor.visible = false;
+				} else if (FPSon == true) {
+					FPSon = false;
+					RTSon = true;
+					FPS.SetActive (false);
+					RTS.SetActive (true);
+					FPSHud.SetActive (false);
+					Cursor.visible = true;
+				} 
+			}
+
+			if (FPSControl.HandGun == true) {
+				Weapons [1].SetActive (false);
+				Weapons [2].SetActive (false);
+				Weapons [0].SetActive (true);
+				Equipped = Weapons [0];
+			} else if (FPSControl.Assault == true) {
+				Weapons [0].SetActive (false);
+				Weapons [2].SetActive (false);
+				Weapons [1].SetActive (true);
+				Equipped = Weapons [1];
+
+			} else if (FPSControl.ShotGun == true) {
+				Equipped = Weapons [2];
+				Weapons [2].SetActive (true);
+				Weapons [0].SetActive (false);
+				Weapons [1].SetActive (false);
+			}
+			if (FPShealth.death == true) {
+				FPSAvailable = false;
 				FPSon = false;
 				RTSon = true;
 				FPS.SetActive (false);
@@ -123,35 +164,7 @@ public class GameManager : MonoBehaviour {
 				FPSHud.SetActive (false);
 				RTSHud.SetActive (true);
 				Cursor.visible = true;
-			} 
-		}
-
-		if (FPSControl.HandGun == true) {
-			Weapons[1].SetActive (false);
-			Weapons[2].SetActive (false);
-			Weapons[0].SetActive (true);
-			Equipped = Weapons [0];
-		} else if (FPSControl.Assault == true) {
-			Weapons[0].SetActive (false);
-			Weapons[2].SetActive (false);
-			Weapons[1].SetActive (true);
-			Equipped = Weapons [1];
-
-		}  else if (FPSControl.ShotGun == true) {
-			Equipped = Weapons [2];
-			Weapons[2].SetActive (true);
-			Weapons[0].SetActive (false);
-			Weapons[1].SetActive (false);
-		}
-		if (FPShealth.death == true) {
-			FPSAvailable = false;
-			FPSon = false;
-			RTSon = true;
-			FPS.SetActive (false);
-			RTS.SetActive (true);
-			FPSHud.SetActive (false);
-			RTSHud.SetActive (true);
-			Cursor.visible = true;
+			}
 		}
 	}
     public void SelectTurret(int i)

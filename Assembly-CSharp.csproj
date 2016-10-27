@@ -48,6 +48,8 @@
      <Compile Include="Assets\BillBoard.cs" />
      <Compile Include="Assets\Scripts\BaseHealth.cs" />
      <Compile Include="Assets\Scripts\Bullet.cs" />
+     <Compile Include="Assets\Scripts\ButtonLoadScene.cs" />
+     <Compile Include="Assets\Scripts\ButtonQuitApplication.cs" />
      <Compile Include="Assets\Scripts\EnemyHealth.cs" />
      <Compile Include="Assets\Scripts\EnemyMove.cs" />
      <Compile Include="Assets\Scripts\EnemyMove2.cs" />
@@ -63,8 +65,7 @@
      <Compile Include="Assets\Scripts\RTScamera.cs" />
      <Compile Include="Assets\Scripts\Turret.cs" />
      <Compile Include="Assets\Scripts\WaveSpawner.cs" />
-     <Compile Include="Assets\k.cs" />
-     <Compile Include="Assets\l.cs" />
+     <Compile Include="Assets\Scripts\menu.cs" />
      <None Include="Assets\DualCorStudios\Readme.txt" />
      <None Include="Assets\SimpleMilitary\ReadMe.txt" />
      <None Include="Assets\Standard Assets\Environment\Water\Water4\Shaders\FXWater4Simple.shader" />
