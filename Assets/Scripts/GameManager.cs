@@ -188,6 +188,7 @@ public class GameManager : MonoBehaviour {
 		win.SetActive(true);
 		pause = true;
 		vic.text = "Enemy killed: " + numofkilled + "\n" + "Coins Gained: " + totalcoins;
+		Cursor.visible = true;
 	}
 	public void losescreen(){
 		lose.SetActive(true);
