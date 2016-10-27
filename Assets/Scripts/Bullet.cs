@@ -10,7 +10,7 @@ public class Bullet : MonoBehaviour
     public float speed = 70f;
 
     // set lifetime of bullet
-    private float lifetime = 1f;
+    public float lifetime = 1f;
 
     public void Seek(Transform _target)
     {
