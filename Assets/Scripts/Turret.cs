@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Turret : MonoBehaviour {
+public class Turret : MonoBehaviour
+{
 
     //store current target
     private Transform turretTarget;
     //set turret range
-    // TODO change this for each type of turret******************************
+    // TODO change this for each type of turret
     public float turretRange = 15f;
 
     // this is the part of the turrent we actually want to rotate
@@ -24,11 +25,11 @@ public class Turret : MonoBehaviour {
     public GameObject bulletPrefab;
     public Transform firePoint;
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start()
     {
         // this sets the rate at which to search for a target
-        //idea is from Brackeys to do it every frame like this - Need to learn how this works
+        //idea is from Brackeys to do it every frame like this to make the game more efficent
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
 
     }
@@ -39,6 +40,7 @@ public class Turret : MonoBehaviour {
     void UpdateTarget()
     {
         // find all objects that have been tagged as Enemy and place in array
+        // note that we have retagged all objects that the turret can shoot as enemy
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
         //set variable for shortest distance and the object
@@ -71,7 +73,7 @@ public class Turret : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update ()
+    void Update()
     {
         // if the turret doesnt have a current target, return with null (to remove target)
         if (turretTarget == null)
@@ -80,6 +82,7 @@ public class Turret : MonoBehaviour {
         // determine the angle to look at turret to target\
         // TODO add code to make the turrent turning smoother ***************************************
         // and need to make the correct part of the turrent rotate..not the whole thing - as had to flip the object as model facing wrong way
+        // this section has been copied from an example and then adjusted to suit our assignment
         Vector3 dir = turretTarget.position - transform.position;
         Quaternion lookRotation = Quaternion.LookRotation(dir);
         Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * speedToRotate).eulerAngles;
@@ -94,7 +97,7 @@ public class Turret : MonoBehaviour {
 
         fireCountdown -= Time.deltaTime;
 
-	}
+    }
 
     // this function shoots the turret
     void Shoot()
