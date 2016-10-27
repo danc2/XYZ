@@ -4,9 +4,7 @@ using System.Collections;
 
 public class FPShealth : MonoBehaviour {
 	public Slider HealthSlider;
-	public Slider StaminaSlider;
 	public int health = 1000;
-	public int Stamina = 500;
 	public static bool death;
 	// Use this for initialization
 	void Start () {
@@ -17,7 +15,6 @@ public class FPShealth : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		HealthSlider.value = health;
-		StaminaSlider.value = Stamina;
 		if(health ==0)
 			death = true;
 		

@@ -7,7 +7,8 @@ using System.Collections;
 public class BaseHealth : MonoBehaviour
 {
 
-    public float curHealth = 500;
+    public float curHealth = 10000;
+	public Slider health;
     public static bool death;
     //public Slider Slider;
     // Use this for initialization
@@ -15,7 +16,7 @@ public class BaseHealth : MonoBehaviour
 
     void Start()
     {
-        //Slider.value = maxHealth;
+		health.maxValue = curHealth;
 		death = false;
     }
 
@@ -30,7 +31,7 @@ public class BaseHealth : MonoBehaviour
     void Update()
     {
 
-        //Slider.value =  curHealth;
+		health.value =  curHealth;
 
         if (curHealth <= 0)
         {

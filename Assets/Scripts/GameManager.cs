@@ -12,14 +12,6 @@ public class GameManager : MonoBehaviour {
 	public float NumOfML = 0;
 	public float MaxNum = 10;
 
-	[Header("Waves Settings")]
-	[Range(1,10)]
-	public int NumberOfWave;
-
-	[Header("Health Settings")]
-	public int UnitsHealth = 100;
-	public int FPSHealth = 100;
-	public int EnemyHealth = 100;
 
 	[Header("FPS Mode")]
 	public bool FPSAvailable;
@@ -58,6 +50,8 @@ public class GameManager : MonoBehaviour {
 	public GameObject lose;
 	[Header("Menu")]
 	public static bool pause = false;
+	public static bool play;
+
 
     // Use this for initialization
     void Start()
@@ -82,6 +76,7 @@ public class GameManager : MonoBehaviour {
 		else
 			Time.timeScale = 1;
 		if (!pause) {
+
 			
 			maxnumofkill = maxnum.text;
 			numkilled.text = "Enemy killed: " + numofkilled + "/" +  maxnumofkill;
@@ -197,5 +192,6 @@ public class GameManager : MonoBehaviour {
 	public void losescreen(){
 		lose.SetActive(true);
 		pause = true;
+		Cursor.visible = true;
 	}
 }

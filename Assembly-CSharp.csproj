@@ -56,7 +56,7 @@
      <Compile Include="Assets\Scripts\EnemyShoot.cs" />
      <Compile Include="Assets\Scripts\FPSBullet.cs" />
      <Compile Include="Assets\Scripts\FPSControl.cs" />
-     <Compile Include="Assets\Scripts\FPShealth.cs" />
+     <Compile Include="Assets\Scripts\FPSHealth.cs" />
      <Compile Include="Assets\Scripts\FPSshooting.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\MouseLook.cs" />
