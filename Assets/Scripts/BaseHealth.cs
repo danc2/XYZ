@@ -16,7 +16,7 @@ public class BaseHealth : MonoBehaviour
     void Start()
     {
         //Slider.value = maxHealth;
-
+		death = false;
     }
 
 
@@ -35,7 +35,7 @@ public class BaseHealth : MonoBehaviour
         if (curHealth <= 0)
         {
             Destroy(gameObject);
-
+			death = true;
             //ADD in code here to take you to loose screen etc
             Debug.Log("YOU LOOSE!!");
         }

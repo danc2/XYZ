@@ -39,7 +39,8 @@ public class GameManager : MonoBehaviour {
 	public Text CurrencyText;
 	public Text MGlimit;
 	public Text MLlimit;
-	public static int coins = 500;
+	public static int coins;
+	public static int totalcoins;
 	public int currency;
 	private int CostOfTurret = 50;
 	private int CostOfMl = 100;
@@ -47,21 +48,27 @@ public class GameManager : MonoBehaviour {
 	private int CostOfAmmo = 500;
 	public Button turret;
 	public Button ml;
-	public static float numofkilled = 0;
+	public static float numofkilled;
 	public static string maxnumofkill;
+	public InputField maxnum;
+	public InputField setcoins;
 	public Text numkilled;
+	public Text vic;
+	public GameObject win;
+	public GameObject lose;
 	[Header("Menu")]
 	public static bool pause = false;
 
     // Use this for initialization
     void Start()
     {
-
+		numofkilled = 0;
+		coins = 500;
 		RTSon = true;
 		FPSon = false;
 		Ammo_UIText.text = "";
         currentSelection = null;
-
+		pause = true;
     }
 
     // Update is called once per frame
@@ -75,7 +82,9 @@ public class GameManager : MonoBehaviour {
 		else
 			Time.timeScale = 1;
 		if (!pause) {
-			numkilled.text = maxnumofkill;
+			
+			maxnumofkill = maxnum.text;
+			numkilled.text = "Enemy killed: " + numofkilled + "/" +  maxnumofkill;
 			currency = coins;
 			CurrencyText.text = currency.ToString ();
 			MGlimit.text = NumOfTurret + "/" + MaxNum;
@@ -165,7 +174,13 @@ public class GameManager : MonoBehaviour {
 				RTSHud.SetActive (true);
 				Cursor.visible = true;
 			}
+			if (numofkilled.ToString() == maxnumofkill) {
+				winscreen ();
+			}
+			if (BaseHealth.death == true)
+				losescreen ();
 		}
+
 	}
     public void SelectTurret(int i)
     {
@@ -174,4 +189,13 @@ public class GameManager : MonoBehaviour {
             currentSelection = turrets[i];
         }
 }
+	public void winscreen(){
+		win.SetActive(true);
+		pause = true;
+		vic.text = "Enemy killed: " + numofkilled + "\n" + "Coins Gained: " + totalcoins;
+	}
+	public void losescreen(){
+		lose.SetActive(true);
+		pause = true;
+	}
 }

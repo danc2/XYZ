@@ -6,8 +6,7 @@ using System.Collections;
 public class menu : MonoBehaviour {
 	public GameObject Menu;
 	public GameObject Settings;
-	public InputField maxnum;
-	public string l;
+
 	public bool ispause;
 	// Use this for initialization
 	void Start () {
@@ -52,11 +51,18 @@ public class menu : MonoBehaviour {
 		Settings.SetActive(true);
 		GameManager.pause = true;
 		ispause = true;
-		GameManager.maxnumofkill = maxnum.text;
 	}
 
-	public void OnButtonQuit()
+	public void Quit()
+	{
+		Application.Quit();
+	}
+	public void backmenu()
 	{
 		Application.LoadLevel(0);
+	}
+	public void reset()
+	{
+		Application.LoadLevel(1);
 	}
 }
